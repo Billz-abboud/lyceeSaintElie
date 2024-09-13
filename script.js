@@ -14,15 +14,13 @@ document.addEventListener('DOMContentLoaded', () => {
     const navLink = item.querySelector('.nav-link');
     const navSubmenu = item.querySelector('.nav-submenu');
 
-    navLink.addEventListener('click', (e) => {
-      // Prevent default navigation action for links with submenus
-      if (navSubmenu) {
-        e.preventDefault();
-
-        // Toggle submenu visibility
-        item.classList.toggle('active');
-      }
-    });
+    if (navSubmenu) {
+      navLink.addEventListener('click', (e) => {
+        e.preventDefault(); // Prevent default navigation action
+        navSubmenu.classList.toggle('active'); // Toggle submenu visibility
+        item.classList.toggle('active'); // Toggle active class on parent item
+      });
+    }
   });
 });
 const prevButton = document.querySelector('.carousel-prev');
