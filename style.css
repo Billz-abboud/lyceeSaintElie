@@ -4,7 +4,20 @@ html, body {
   padding: 0; /* Remove default padding */
   box-sizing: border-box; /* Include padding and border in element width */
 }
+.search-button {
+  background: none;
+  border: none;
+  color: #fff;
+  font-size: 24px; /* Adjust size as needed */
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+}
 
+.search-button svg {
+  width: 24px; /* Adjust size as needed */
+  height: 24px; /* Adjust size as needed */
+}
 /* General Styles */
 .nav {
   display: flex;
@@ -37,7 +50,7 @@ html, body {
   width: 150px; 
   height: auto; 
   margin-right: 20px; 
-  font-size: x-large;
+  font-size:small;
   font-weight: bolder;
   font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
 }
@@ -50,6 +63,62 @@ html, body {
 .nav-link {
   color: #fff;
   text-decoration: none;
+}
+
+/* Toggle Icons */
+.nav-icon,
+.nav-icon-close {
+  display: none; /* Hide both icons by default */
+}
+/* General Styles */
+.nav-content {
+  display: flex;
+  align-items: center;
+  flex-grow: 1;
+}
+
+.nav-text {
+  margin-right: 1rem; /* Space between text and search button */
+  font-size: 18px;
+  position: fixed;
+  right: 30%;
+  top: 4%;
+}
+
+.search-button {
+  margin-right: 1rem; /* Space between search button and toggle button */
+  background: none;
+  border: none;
+  color: #fff;
+  font-size: 16px;
+  cursor: pointer;
+}
+.search-button {
+  background: none;
+  border: none;
+  color: #fff;
+  cursor: pointer;
+  font-size: 24px;
+  position: fixed;
+  right: 15%;
+  top: 6%;
+}
+
+.search-icon {
+  display: inline;
+}
+/* Show the + icon by default */
+.nav-item .nav-icon {
+  display: inline; /* Show the + icon initially */
+}
+
+/* Show the _ icon when the nav item is active */
+.nav-item.active .nav-icon {
+  display: none; /* Hide the + icon when active */
+}
+
+.nav-item.active .nav-icon-close {
+  display: inline; /* Show the _ icon when active */
 }
 
 /* Submenu Styling */
@@ -136,12 +205,26 @@ html, body {
     transition: max-height 0.3s ease-out; /* Smooth animation */
     visibility: hidden; /* Hide content initially */
   }
-
+  .nav-content {
+    width: 100%; /* Ensure it takes full width on mobile */
+    justify-content: space-between; /* Space between text, search button, and toggle */
+  }
   .nav-list.active {
     max-height: 1000px; /* Adjust based on content size */
     visibility: visible; /* Show content when active */
   }
+  .nav-list.active {
+    max-height: 1000px; /* Adjust based on content size */
+    visibility: visible; /* Show content when active */
+  }
+  
+  .nav-toggle.active .nav-toggle-icon {
+    display: none; /* Hide the menu icon when active */
+  }
 
+  .nav-toggle.active .nav-toggle-icon-close {
+    display: inline; /* Show the close icon when active */
+  }
   .nav-submenu {
     display: none; /* Hide submenu by default */
     position: relative; /* Position below the parent item */
@@ -160,10 +243,24 @@ html, body {
     color: #fff;
     font-size: 24px;
     cursor: pointer;
+    margin-left: auto; /* Push toggle button to the right */
     margin-bottom: 10px;
     z-index: 110; /* Ensure it's above other content */
   }
+  .nav-toggle-icon {
+    display: inline; /* Show menu icon on mobile */
+  }
+  .nav-toggle-icon-close {
+    display: none; /* Hide close icon by default on mobile */
+  }
+  
+  .nav-toggle.active .nav-toggle-icon {
+    display: none; /* Hide menu icon when nav is active */
+  }
 
+  .nav-toggle.active .nav-toggle-icon-close {
+    display: inline; /* Show close icon when nav is active */
+  }
   .nav-toggle-icon,
   .nav-toggle-icon-close {
     display: block;
