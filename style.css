@@ -1,0 +1,606 @@
+/* General Styles */
+.nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem;
+  background-color: #e4002b;
+  color: #fff;
+  position: relative;
+}
+
+.nav-logo {
+  width: 150px; /* Adjust as necessary */
+  height: auto; /* Keeps the aspect ratio */
+  margin-right: 20px; /* Space between logo and navigation list */
+  font-size: x-large;
+  font-weight: bolder;
+  font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+}
+
+header {
+  height: auto;
+}
+
+body {
+  margin: 0;
+}
+
+.nav-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column; /* Stack items vertically on mobile */
+  overflow: hidden;
+  max-height: 0; /* Start closed */
+  transition: max-height 0.5s ease; /* Smooth open/close effect */
+}
+
+.nav-list.active {
+  max-height: 500px; /* Adjust to the approximate total height of your nav items */
+}
+
+.nav-item {
+  margin-bottom: 15px;
+  margin-top: 20px;
+  font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+  font-weight: bolder;
+  font-size: larger;
+}
+
+.nav-link {
+  color: #fff;
+  text-decoration: none;
+}
+
+.nav-submenu {
+  list-style: none;
+  margin-top: 10px;
+  padding-left: 20px;
+  display: none; /* Hidden by default */
+  flex-direction: column;
+  border: 1px solid;
+  padding: 10px;
+}
+
+.nav-submenu li a {
+  font-size: 18px; /* Larger text size for submenu options */
+  padding: 5px 0; /* Increase padding for larger clickable area */
+}
+
+.nav-item.active .nav-submenu {
+  display: block; /* Show submenu when parent is active */
+}
+
+/* Styles for Desktop */
+@media (min-width: 769px) {
+  .nav {
+    justify-content: flex-start; /* Align items to the left */
+  }
+
+  .nav-list {
+    display: flex;
+    flex-direction: row; /* Items align horizontally */
+    margin-left: auto; /* Push the navigation list to the right of the logo */
+    max-height: none; /* No height restrictions on desktop */
+  }
+  
+  .nav-item:hover .nav-submenu {
+    display: block; /* Show submenu on hover for desktop */
+  }
+
+  .nav-toggle {
+    display: none; /* Hide toggle button on desktop */
+  }
+}
+
+/* Styles for Mobile */
+@media (max-width: 768px) {
+  .nav {
+    flex-direction: column;
+    align-items: flex-start; /* Align items from the start */
+    width: 100%;
+  }
+
+  .nav-toggle {
+    display: block;
+    background: none;
+    border: none;
+    color: #fff;
+    font-size: 24px;
+    cursor: pointer;
+    margin-bottom: 10px;
+  }
+
+  .nav-toggle-icon,
+  .nav-toggle-icon-close {
+    display: block;
+  }
+
+  .nav-toggle-icon-close {
+    display: none; /* Initially hide close icon */
+  }
+
+  .nav-toggle.active .nav-toggle-icon {
+    display: none;
+  }
+
+  .nav-toggle.active .nav-toggle-icon-close {
+    display: block;
+  }
+
+  .nav-list {
+    width: 100%; /* Ensure the nav-list takes the full width */
+    flex-direction: column;
+  }
+
+  .nav-item.active .nav-submenu {
+    display: flex; /* Show submenu items when active */
+    background-color: #e4002b;
+    
+  }
+
+  .nav-submenu li a {
+    font-size: 18px; /* Increase text size for submenu items */
+    padding: 10px 0; /* Larger clickable area for submenu items */
+  }
+}
+
+
+
+
+
+/* Video Section Styles */
+.video-section {
+  position: relative;
+  width: 100%;
+  height: 60vh; /* Adjust height as needed */
+  overflow: hidden;
+}
+
+.video-container {
+  position: relative;
+  width: 100%;
+  height: 100%;
+}
+
+.video {
+  width: 100%;
+  height: 100%;
+  object-fit: cover; /* Cover the container */
+}
+
+.video-overlay {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  color: #fff;
+  text-align: center;
+  z-index: 10; /* Ensure it is above the video */
+}
+
+.video-overlay h2 {
+  margin: 0;
+  font-size: 2rem; /* Adjust font size as needed */
+  background-color: rgba(0, 0, 0, 0.5); /* Optional: semi-transparent background for better readability */
+  padding: 10px;
+  border-radius: 5px;
+}
+
+/* Carousel Section Styles */
+.carousel-section {
+  text-align: left; /* Align heading and link to the left */
+  margin: 20px; /* Margin around the section */
+}
+
+.carousel-heading {
+  font-size: 1.8rem;
+  margin-bottom: 10px;
+  display: flex;
+  justify-content: space-between; /* Distribute space between heading and link */
+  align-items: center;
+}
+
+.view-all-link {
+  font-size: 1rem;
+  color: #e4002b; /* Link color */
+  text-decoration: none;
+  justify-content:right;
+  display: flex;
+}
+
+.view-all-link:hover {
+  text-decoration: underline;
+}
+
+/* Carousel Container */
+.carousel-container {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  max-width: 100%;
+  margin: 0 auto;
+}
+
+/* Carousel Styles */
+.carousel {
+  display: flex;
+  overflow: hidden;
+  scroll-snap-type: x mandatory;
+  scroll-behavior: smooth;
+  width: 100%;
+}
+
+.carousel-item {
+  min-width: 350px; /* Increase width for larger items */
+  height: 250px; /* Increase height for larger items */
+  flex-shrink: 0;
+  margin: 0 10px; /* Space between items */
+  scroll-snap-align: start;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  overflow: hidden;
+  position: relative;
+}
+
+/* Carousel Images */
+.carousel-item img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover; /* Ensure images cover the item without distortion */
+  display: block;
+}
+
+/* Carousel Details */
+.carousel-item .details {
+  padding: 10px;
+}
+
+.carousel-item h3 {
+  margin-top: 0;
+}
+
+.carousel-item .info {
+  font-size: 0.8rem;
+  color: #666;
+}
+
+/* Navigation Buttons */
+.carousel-prev,
+.carousel-next {
+  background-color: #e4002b;
+  border: none;
+  color: #fff;
+  font-size: 24px;
+  cursor: pointer;
+  padding: 10px;
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 10;
+}
+
+.carousel-prev {
+  left: 10px;
+  border-radius:50%;
+}
+
+.carousel-next {
+  right: 10px;
+  border-radius:50%;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .carousel-item {
+    min-width: 250px; /* Adjust minimum width for smaller screens */
+    height: 200px; /* Adjust height for smaller screens */
+  }
+}
+
+
+
+
+
+
+/* Image and Text Section Styles */
+.image-text-section {
+  width: 100%;
+  padding: 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.image-text-container {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  max-width: 1200px;
+}
+
+.image-text-box {
+  flex: 1;
+  margin: 0 10px;
+  text-align: left; /* Align text to the left */
+  background-color: rgb(221, 221, 221);
+}
+
+.image-text-box .image {
+  width: 100%;
+  height: auto;
+  border-radius: 5px;
+}
+
+.text-content h1, .text-content p {
+  margin: 10px 0;
+  text-align: left; /* Align text to the left */
+}
+
+
+
+
+
+
+/* Alternating Image and Text Section Styles */
+.alternating-section {
+  width: 100%;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px; /* Space between each alternating div */
+}
+
+.alternating-box {
+  display: flex;
+  align-items: center;
+  gap: 20px; /* Space between the image and text */
+  padding: 20px;
+  background-color: rgb(243, 242, 242); /* Optional background color */
+  border-radius: 5px;
+}
+
+.alternating-box .image {
+  width: 45%; /* Adjust image width */
+  border-radius: 5px;
+}
+
+.text-content {
+  width: 45%; /* Adjust text width */
+}
+
+.text-content p {
+  margin: 5px 0;
+}
+
+/* Reverse layout for div 2 and 4 */
+.alternating-box.reverse {
+  flex-direction: row-reverse; /* Flip image and text for reverse effect */
+}
+
+/* Mobile responsiveness */
+@media (max-width: 768px) {
+  .alternating-box {
+    flex-direction: column;
+    align-items: center;
+    gap: 10px; /* Reduced space between image and text */
+  }
+
+  .alternating-box .image,
+  .alternating-box .text-content {
+    width: 100%;
+    text-align: center;
+  }
+
+  .text-content {
+    order: 2; /* Ensure text comes after the image */
+  }
+
+  .image {
+    order: 1; /* Ensure image comes before the text */
+  }
+}
+
+
+
+
+/* Carousel Container */
+.carousel-container {
+  position: relative;
+  width: 100%;
+  max-width: 1000px; /* Adjust to your desired width */
+  margin: 0 auto;
+  overflow: hidden;
+}
+
+/* Carousel */
+.carousel {
+  display: flex;
+  flex-wrap: nowrap;
+  overflow-x: auto;
+  scroll-behavior: smooth;
+  padding: 20px 0;
+  gap: 10px; /* Space between items */
+}
+
+.carousel::-webkit-scrollbar {
+  display: none; /* Hide scrollbar */
+}
+
+/* Carousel Container */
+.carousel-container {
+  position: relative;
+  width: 100%;
+  max-width: 100%; /* Adjust to your desired width */
+  margin: 0 auto;
+  overflow: hidden;
+}
+
+/* Carousel */
+.carousel {
+  display: flex;
+  flex-wrap: nowrap;
+  overflow-x: auto;
+  scroll-behavior: smooth;
+  padding: 20px 0;
+  gap: 10px; /* Space between items */
+}
+
+.carousel::-webkit-scrollbar {
+  display: none; /* Hide scrollbar */
+}
+
+/* Carousel Items */
+.carousel-item {
+  flex: 0 0 auto;
+  width: 30rem; /* Adjust width as needed */
+  background-color: #ddd;
+  border-radius: 5px;
+  display: flex;
+  flex-direction: column; /* Stack image and text vertically */
+  justify-content: flex-start;
+  align-items: center;
+  gap: 10px; /* Space between image and text */
+  height: 25rem;
+}
+
+/* Image inside carousel item */
+.carousel-item img {
+  width: 100%; /* Take full width of the item */
+  height: 20rem; /* Adjust the height */
+  object-fit: cover;
+  border-radius: 5px;
+}
+
+/* Arrows */
+.arrow {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background-color: rgba(0, 0, 0, 0.5);
+  color: white;
+  border: none;
+  padding: 10px;
+  cursor: pointer;
+  z-index: 1;
+}
+
+.left-arrow {
+  left: 10px;
+}
+
+.right-arrow {
+  right: 10px;
+}
+
+/* Hover effect on arrows */
+.arrow:hover {
+  background-color: rgba(0, 0, 0, 0.8);
+}
+/* Details below image */
+.details {
+  text-align: center; /* Center the text */
+}
+
+.details h3 {
+  font-size: 1.2rem;
+  margin: 0.5rem 0 0.2rem;
+}
+
+.details .info {
+  font-size: 1rem;
+  color: #555;
+}
+
+
+
+
+
+
+
+
+
+
+/* Red Background Section */
+.red-background-section {
+  display: flex;
+  align-items: center; /* Vertically center content */
+  background-color: red;
+  height: 20vh; /* 20% of the viewport height */
+  padding: 0 20px; /* Optional padding */
+  color: white; /* Text color */
+}
+
+/* Text Container */
+.text-container {
+  flex: 1;
+}
+
+/* Search Container */
+.search-container {
+  flex: 1;
+  display: flex;
+  justify-content: flex-end; /* Align search box to the right */
+}
+
+/* Search Input */
+.search-container input {
+  width: 100%;
+  padding: 8px;
+  border: none;
+  border-radius: 5px;
+  outline: none;
+}
+
+/* Footer Styles */
+.footer {
+  width: 100%;
+  background-color: #f8f8f8; /* Background color for the footer */
+}
+
+/* Footer Sections */
+.footer-sections {
+  display: flex;
+  gap: 0; /* No space between sections */
+  padding: 0; /* Remove padding from container */
+  margin: 0; /* Remove margin from container */
+}
+
+/* Individual Footer Section */
+.footer-section {
+  flex: 1; /* Each section takes up equal space */
+  min-width: 200px; /* Minimum width for each section */
+  background-color: rgb(243, 242, 242); /* Optional background color */
+  border-radius: 5px; /* Optional: Rounded corners */
+  box-sizing: border-box; /* Include padding in width calculation */
+  padding: 0; /* Remove padding inside sections */
+  margin: 0; /* Remove margin around sections */
+}
+
+/* Footer Bottom */
+.footer-bottom {
+  text-align: center; /* Center text in the bottom div */
+  background-color: #d0d0d0; /* Optional background color for footer-bottom */
+  padding: 10px;
+  border-radius: 5px; /* Optional: Rounded corners */
+}
+
+/* Responsive Styles */
+@media (max-width: 768px) {
+  .footer-sections {
+    flex-direction: column; /* Stack sections vertically on smaller screens */
+  }
+
+  .footer-section {
+    min-width: 100%; /* Make each section take full width */
+    margin-bottom: 0px; /* Add space between stacked sections */
+  }
+
+  .footer-section:last-child {
+    margin-bottom: 0; /* Remove margin from the last section */
+  }
+}
