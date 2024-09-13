@@ -22,8 +22,18 @@ header {
   height: auto;
 }
 
+/* General Styles */
 body {
   margin: 0;
+  overflow-x: hidden; /* Prevent horizontal scrolling */
+  width: 100%;
+  box-sizing: border-box;
+}
+
+/* For all sections to be the same width on mobile */
+* {
+  max-width: 100%; /* Prevent elements from exceeding viewport width */
+  box-sizing: border-box; /* Include padding and borders in element width */
 }
 
 .nav-list {
@@ -102,7 +112,21 @@ body {
     align-items: flex-start; /* Align items from the start */
     width: 100%;
   }
-
+  .nav,
+  .carousel-container,
+  .footer,
+  .image-text-section,
+  .alternating-section,
+  .red-background-section,
+  .footer-sections,
+  .footer-section,
+  .video-section {
+    width: 100%; /* Ensure all sections take full width */
+    max-width: 100%;
+    overflow: hidden; /* Ensure no horizontal overflow */
+    padding: 0 10px; /* Optional padding for some spacing inside elements */
+    margin: 0 auto; /* Center the elements */
+  }
   .nav-toggle {
     display: block;
     background: none;
@@ -236,7 +260,7 @@ body {
 }
 
 .carousel-item {
-  min-width: 350px; /* Increase width for larger items */
+  min-width: 90%; /* Increase width for larger items */
   height: 250px; /* Increase height for larger items */
   flex-shrink: 0;
   margin: 0 10px; /* Space between items */
@@ -297,7 +321,7 @@ body {
 /* Responsive Design */
 @media (max-width: 768px) {
   .carousel-item {
-    min-width: 250px; /* Adjust minimum width for smaller screens */
+    min-width: 90%; /* Adjust minimum width for smaller screens */
     height: 200px; /* Adjust height for smaller screens */
   }
 }
