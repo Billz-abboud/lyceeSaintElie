@@ -94,6 +94,8 @@ body {
     flex-direction: row; /* Items align horizontally */
     margin-left: auto; /* Push the navigation list to the right of the logo */
     max-height: none; /* No height restrictions on desktop */
+    position:fixed;
+    left:20%;
   }
   
   .nav-item:hover .nav-submenu {
