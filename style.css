@@ -1,3 +1,10 @@
+html, body {
+  overflow-x: hidden; /* Prevent horizontal scrolling */
+  margin: 0; /* Remove default margin */
+  padding: 0; /* Remove default padding */
+  box-sizing: border-box; /* Include padding and border in element width */
+}
+
 /* General Styles */
 .nav {
   display: flex;
@@ -7,56 +14,37 @@
   background-color: #e4002b;
   color: #fff;
   position: relative;
+  z-index: 10; /* Ensure it's above other elements */
+}
+
+/* Position the toggle button to the right */
+.nav-toggle {
+  background: none;
+  border: none;
+  color: #fff;
+  font-size: 24px;
+  cursor: pointer;
+  margin-left: auto; /* Push toggle button to the right */
+  z-index: 110; /* Ensure it's above other elements */
+}
+
+/* Hide the close icon by default */
+.nav-toggle-icon-close {
+  display: none;
 }
 
 .nav-logo {
-  width: 150px; /* Adjust as necessary */
-  height: auto; /* Keeps the aspect ratio */
-  margin-right: 20px; /* Space between logo and navigation list */
+  width: 150px; 
+  height: auto; 
+  margin-right: 20px; 
   font-size: x-large;
   font-weight: bolder;
   font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
 }
 
-header {
-  height: auto;
-}
-
-/* General Styles */
-body {
-  margin: 0;
-  overflow-x: hidden; /* Prevent horizontal scrolling */
-  width: 100%;
-  box-sizing: border-box;
-}
-
-/* For all sections to be the same width on mobile */
-* {
-  max-width: 100%; /* Prevent elements from exceeding viewport width */
-  box-sizing: border-box; /* Include padding and borders in element width */
-}
-
-.nav-list {
-  list-style: none;
-  margin: 0;
-  padding: 0;
-  display: flex;
-  flex-direction: column; /* Stack items vertically on mobile */
-  overflow: hidden;
-  max-height: 0; /* Start closed */
-  transition: max-height 0.5s ease; /* Smooth open/close effect */
-}
-
-.nav-list.active {
-  max-height: 500px; /* Adjust to the approximate total height of your nav items */
-}
-
 .nav-item {
-  margin-bottom: 15px;
-  margin-top: 20px;
-  font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
-  font-weight: bolder;
-  font-size: larger;
+  position: relative; /* Important for submenu positioning */
+  padding: 1rem;
 }
 
 .nav-link {
@@ -64,71 +52,107 @@ body {
   text-decoration: none;
 }
 
+/* Submenu Styling */
 .nav-submenu {
   list-style: none;
-  margin-top: 10px;
   padding-left: 20px;
   display: none; /* Hidden by default */
-  flex-direction: column;
-  border: 1px solid;
+  position: absolute; /* Positioning submenu outside the nav item */
+  top: 100%; /* Position it directly below the nav item */
+  left: 0;
+  background-color: #e4002b;
+  z-index: 100; /* Ensure it's above other elements */
+  width: 200px; /* Optional width */
+  border: 1px solid #fff;
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1); /* Optional: Add shadow for better visibility */
   padding: 10px;
 }
 
 .nav-submenu li a {
-  font-size: 18px; /* Larger text size for submenu options */
-  padding: 5px 0; /* Increase padding for larger clickable area */
+  font-size: 18px;
+  padding: 5px 0;
+  color: #fff;
+  text-decoration: none;
 }
 
-.nav-item.active .nav-submenu {
-  display: block; /* Show submenu when parent is active */
+.nav-item:hover .nav-submenu {
+  display: block; /* Show submenu on hover */
 }
 
-/* Styles for Desktop */
+/* Ensure that the parent containers allow for submenu visibility */
+.nav, .container {
+  position: relative;
+  overflow: visible; /* Prevent clipping of the submenu */
+}
+.nav-list, .nav-submenu {
+  list-style-type: none; /* Removes the dots/bullets */
+  padding-left: 0; /* Ensures no default padding */
+  margin: 0; /* Removes default margin */
+}
+
+/* Desktop Styles */
 @media (min-width: 769px) {
+  .nav-list {
+    display: flex;
+    flex-direction: row;
+    position: fixed;
+    left: 18%;
+  }
+  .mobile-image {
+    display: none; /* Hide the mobile image on desktop screens */
+  }
+  .nav-item:hover .nav-submenu {
+    display: block;
+    position: absolute;
+    top: 100%; /* Below the nav item */
+    left: 0;
+    z-index: 100; /* Ensure it's above other content */
+  }
+
+  .nav-toggle {
+    display: none;
+  }
+}
+
+/* Mobile Styles */
+@media (max-width: 768px) {
   .nav {
-    justify-content: flex-start; /* Align items to the left */
+    flex-direction: column;
+    align-items: flex-start; 
+    width: 100%;
   }
 
   .nav-list {
     display: flex;
-    flex-direction: row; /* Items align horizontally */
-    margin-left: auto; /* Push the navigation list to the right of the logo */
-    max-height: none; /* No height restrictions on desktop */
-    position: fixed;
-    left: 20%;
-  }
-  
-  .nav-item:hover .nav-submenu {
-    display: block; /* Show submenu on hover for desktop */
-  }
-
-  .nav-toggle {
-    display: none; /* Hide toggle button on desktop */
-  }
-}
-
-/* Styles for Mobile */
-@media (max-width: 768px) {
-  .nav {
     flex-direction: column;
-    align-items: flex-start; /* Align items from the start */
-    width: 100%;
+    position: absolute; /* Overlay position */
+    top: 60px; /* Adjust based on the height of the nav */
+    left: 0;
+    background-color: #e4002b;
+    padding: 10px;
+    z-index: 100; /* Ensure it is above other content */
+    max-height: 0; /* Start with height 0 for animation */
+    overflow: hidden; /* Hide overflow */
+    transition: max-height 0.3s ease-out; /* Smooth animation */
+    visibility: hidden; /* Hide content initially */
   }
-  .nav,
-  .carousel-container,
-  .footer,
-  .image-text-section,
-  .alternating-section,
-  .red-background-section,
-  .footer-sections,
-  .footer-section,
-  .video-section {
-    width: 100%; /* Ensure all sections take full width */
-    max-width: 100%;
-    overflow: hidden; /* Ensure no horizontal overflow */
-    padding: 0 10px; /* Optional padding for some spacing inside elements */
-    margin: 0 auto; /* Center the elements */
+
+  .nav-list.active {
+    max-height: 1000px; /* Adjust based on content size */
+    visibility: visible; /* Show content when active */
   }
+
+  .nav-submenu {
+    display: none; /* Hide submenu by default */
+    position: relative; /* Position below the parent item */
+    background-color: #e4002b;
+    padding: 10px;
+  }
+
+  .nav-item.active .nav-submenu {
+    display: block; /* Show submenu when the parent item is active */
+  }
+
   .nav-toggle {
     display: block;
     background: none;
@@ -137,42 +161,44 @@ body {
     font-size: 24px;
     cursor: pointer;
     margin-bottom: 10px;
+    z-index: 110; /* Ensure it's above other content */
   }
 
   .nav-toggle-icon,
   .nav-toggle-icon-close {
     display: block;
+    top: 6%;
+    right: 10%;
+    position:fixed;
   }
 
   .nav-toggle-icon-close {
-    display: none; /* Initially hide close icon */
+    display: none; /* Hide the close icon by default */
   }
 
   .nav-toggle.active .nav-toggle-icon {
-    display: none;
+    display: none; /* Hide the menu icon when active */
   }
 
   .nav-toggle.active .nav-toggle-icon-close {
-    display: block;
+    display: block; /* Show the close icon when active */
   }
 
-  .nav-list {
-    width: 100%; /* Ensure the nav-list takes the full width */
-    flex-direction: column;
+  .video {
+    display: none; /* Hide the video on mobile screens */
   }
-
-  .nav-item.active .nav-submenu {
-    display: flex; /* Show submenu items when active */
-    background-color: #e4002b;
-    
-  }
-
-  .nav-submenu li a {
-    font-size: 18px; /* Increase text size for submenu items */
-    padding: 10px 0; /* Larger clickable area for submenu items */
+  
+  .mobile-image {
+    display: block; /* Show the image on mobile screens */
+    width: 100%; /* Ensure the image takes full width */
+    height: auto; /* Adjust height proportionally */
+    object-fit: cover; /* Ensure the image covers the container */
+    position: absolute; /* Position image absolutely to cover video container */
+    top: 0;
+    left: 0;
+    z-index: 5; /* Ensure it is behind the overlay */
   }
 }
-
 
 
 
@@ -195,6 +221,7 @@ body {
   width: 100%;
   height: 100%;
   object-fit: cover; /* Cover the container */
+  display: block; /* Ensure video is displayed by default */
 }
 
 .video-overlay {
@@ -214,6 +241,12 @@ body {
   padding: 10px;
   border-radius: 5px;
 }
+
+
+
+
+
+
 
 /* Carousel Section Styles */
 .carousel-section {
@@ -252,18 +285,17 @@ body {
   margin: 0 auto;
 }
 
-/* Carousel Styles */
 .carousel {
   display: flex;
-  overflow: hidden;
-  scroll-snap-type: x mandatory;
+  overflow-x: auto; /* Allow horizontal scroll if needed within the container */
   scroll-behavior: smooth;
-  width: 100%;
+  padding: 20px 0;
 }
 
 .carousel-item {
   min-width: 90%; /* Increase width for larger items */
   height: 250px; /* Increase height for larger items */
+  flex: 0 0 auto; /* Ensure items do not stretch */
   flex-shrink: 0;
   margin: 0 10px; /* Space between items */
   scroll-snap-align: start;
@@ -375,7 +407,7 @@ body {
 /* Alternating Image and Text Section Styles */
 .alternating-section {
   width: 100%;
-  padding: 20px;
+
   display: flex;
   flex-direction: column;
   gap: 20px; /* Space between each alternating div */
@@ -629,4 +661,20 @@ body {
   .footer-section:last-child {
     margin-bottom: 0; /* Remove margin from the last section */
   }
+}
+
+.social-icons {
+  margin-top: 10px;
+}
+
+.social-icon {
+  margin-right: 15px; /* Space between the icons */
+  text-decoration: none;
+  color: black; /* Set the icon color to black */
+  font-size: 24px; /* Adjust icon size */
+  transition: color 0.3s ease;
+}
+
+.social-icon:hover {
+  color: #e4002b; /* Change color on hover to match the theme */
 }
