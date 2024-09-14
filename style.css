@@ -332,6 +332,7 @@ html, body {
 .carousel-section {
   text-align: left; /* Align heading and link to the left */
   margin: 20px; /* Margin around the section */
+  width: 100%;
 }
 
 .carousel-heading {
@@ -348,6 +349,8 @@ html, body {
   text-decoration: none;
   justify-content:right;
   display: flex;
+  position: relative;
+  right: 3rem;
 }
 
 .view-all-link:hover {
@@ -496,7 +499,7 @@ html, body {
 .carousel-containertwoimages {
   display: flex;
   flex-wrap: nowrap; /* Prevent wrapping */
-  gap: 20px; /* Space between items */
+  gap: 0.5rem; /* Space between items */
   scroll-behavior: smooth; /* Smooth scrolling */
   overflow-x: auto; /* Enable horizontal scrolling */
 }
@@ -507,7 +510,7 @@ html, body {
   max-width: 500px; /* Optional: Max width for each item */
   box-sizing: border-box; /* Include padding and border in width */
   border-radius: 5px; /* Optional: Rounded corners */
-  background-color: #f9f9f9; /* Background color for carousel items */
+  background-color: #ffffff; /* Background color for carousel items */
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Optional: Shadow for a lifted effect */
 }
 
