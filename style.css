@@ -665,38 +665,58 @@ html, body {
 /* Red Background Section */
 .red-background-section {
   display: flex;
-  align-items: center; /* Vertically center content */
+  flex-direction: column; /* Stack items vertically */
+  align-items: center; /* Center content horizontally */
   background-color: red;
   height: 20vh; /* 20% of the viewport height */
   padding: 0 20px; /* Optional padding */
   color: white; /* Text color */
+  text-align: center; /* Center text inside container */
 }
 
 /* Text Container */
 .text-container {
-  flex: 1;
+  margin-bottom: 10px; /* Space between text and input */
 }
 
 /* Search Container */
 .search-container {
-  flex: 1;
+  width: 100%; /* Full width of the container */
   display: flex;
-  justify-content: flex-end; /* Align search box to the right */
+  justify-content: center; /* Center input horizontally */
 }
 
 /* Search Input */
 .search-container input {
-  width: 100%;
+  width: 80%; /* Adjust width as needed */
   padding: 8px;
   border: none;
   border-radius: 5px;
   outline: none;
 }
 
+/* Responsive Styles */
+@media (max-width: 768px) {
+  .red-background-section {
+    height: 10rem; /* Adjust height for smaller screens */
+  }
+
+  .search-container input {
+    width: 100%; /* Make input take full width on mobile screens */
+  }
+}
+
+
+
+
+
+
+
 /* Footer Styles */
 .footer {
   width: 100%;
   background-color: #f8f8f8; /* Background color for the footer */
+  font-family: 'Tajawal', sans-serif; /* Set Tajawal font for the footer */
 }
 
 /* Footer Sections */
@@ -711,19 +731,84 @@ html, body {
 .footer-section {
   flex: 1; /* Each section takes up equal space */
   min-width: 200px; /* Minimum width for each section */
-  background-color: rgb(243, 242, 242); /* Optional background color */
+  background-color: #f9f9f9; /* Optional background color */
   border-radius: 5px; /* Optional: Rounded corners */
   box-sizing: border-box; /* Include padding in width calculation */
-  padding: 0; /* Remove padding inside sections */
+  padding: 20px; /* Add padding inside sections */
   margin: 0; /* Remove margin around sections */
+  text-align: left; /* Align text to the left */
 }
 
 /* Footer Bottom */
 .footer-bottom {
   text-align: center; /* Center text in the bottom div */
-  background-color: #d0d0d0; /* Optional background color for footer-bottom */
-  padding: 10px;
-  border-radius: 5px; /* Optional: Rounded corners */
+  background-color: #f9f9f9; /* Background color for footer-bottom */
+  padding: 20px; /* Add padding inside the footer bottom */
+  border-radius: 5px; /* Rounded corners */
+}
+
+.footer-bottom p {
+  margin: 10px 0; /* Add vertical spacing between paragraphs */
+  display: flex;
+  flex-direction: column;
+
+}
+
+.footer-bottom .search-container {
+  display: flex; /* Align input and button horizontally */
+  gap: 10px; /* Space between input and button */
+  margin-top: 10px; /* Space above the search container */
+}
+
+.footer-bottom input[type="text"] {
+  padding: 10px; /* Add padding inside the input */
+  border-radius: 5px; /* Rounded corners */
+  border: 1px solid #fff8f8; /* Light border color */
+  color: #333; /* Text color */
+}
+
+.footer-bottom input[type="text"]::placeholder {
+  color: #aaa; /* Gray placeholder text */
+}
+
+.footer-bottom button {
+  padding: 10px 15px; /* Add padding inside the button */
+  border-radius: 5px; /* Rounded corners */
+  border: 1px solid #000; /* Black border */
+  background-color: #fff; /* White background */
+  width: 9rem;
+  height: 3rem;
+  color: #000; /* Black text */
+  cursor: pointer; /* Change cursor on hover */
+  transition: background-color 0.3s ease, color 0.3s ease; /* Smooth transition */
+}
+
+.footer-bottom button:hover {
+  background-color: #000; /* Black background on hover */
+  color: #fff; /* White text on hover */
+}
+
+/* Footer Links */
+.footer-links {
+  margin: 0; /* Remove margin for the link container */
+  display: flex; /* Use flexbox to handle layout */
+  flex-wrap: wrap; /* Allow wrapping to handle multiple lines */
+  justify-content: center; /* Center the links */
+}
+
+.footer-links a {
+  text-decoration: none; /* Remove underline from links */
+  color: #000; /* Set link color to black */
+  margin: 5px 10px; /* Add horizontal spacing between links */
+}
+
+.footer-links a:hover {
+  text-decoration: underline; /* Add underline on hover */
+}
+
+.footer-copyright {
+  margin: 0; /* Remove margin for copyright text */
+  font-weight: bold; /* Make the copyright text bold */
 }
 
 /* Responsive Styles */
@@ -734,11 +819,29 @@ html, body {
 
   .footer-section {
     min-width: 100%; /* Make each section take full width */
-    margin-bottom: 0px; /* Add space between stacked sections */
+    margin-bottom: 20px; /* Add space between stacked sections */
   }
 
   .footer-section:last-child {
     margin-bottom: 0; /* Remove margin from the last section */
+  }
+
+  .footer-bottom {
+    margin-top: 20px; /* Add space above the footer bottom on mobile screens */
+  }
+
+  .footer-links {
+    flex-direction: column; /* Stack links vertically on mobile screens */
+    align-items: start; /* Align the links to the start */
+  }
+
+  .footer-links a {
+    margin: 10px 0; /* Add vertical spacing between links */
+  }
+
+  .footer-bottom button:hover {
+    background-color: #000; /* Ensure hover effect on mobile */
+    color: #fff; /* Ensure hover text color on mobile */
   }
 }
 
