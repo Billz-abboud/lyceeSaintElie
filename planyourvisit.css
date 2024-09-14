@@ -1,1 +1,500 @@
 
+html, body {
+  overflow-x: hidden; /* Prevent horizontal scrolling */
+  margin: 0; /* Remove default margin */
+  padding: 0; /* Remove default padding */
+  box-sizing: border-box; /* Include padding and border in element width */
+}
+.search-button {
+  background: none;
+  border: none;
+  color: #fff;
+  font-size: 24px; /* Adjust size as needed */
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+}
+
+.search-button svg {
+  width: 24px; /* Adjust size as needed */
+  height: 24px; /* Adjust size as needed */
+}
+/* General Styles */
+.nav {
+
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem;
+  background-color: #e4002b;
+  color: #fff;
+  position: relative;
+  z-index: 10; /* Ensure it's above other elements */
+}
+
+/* Position the toggle button to the right */
+.nav-toggle {
+  background: none;
+  border: none;
+  color: #fff;
+  font-size: 24px;
+  cursor: pointer;
+  margin-left: auto; /* Push toggle button to the right */
+  z-index: 110; /* Ensure it's above other elements */
+}
+
+/* Hide the close icon by default */
+.nav-toggle-icon-close {
+  display: none;
+}
+
+.nav-logo {
+  width: 150px; 
+  height: auto; 
+  margin-right: 20px; 
+  font-size:small;
+  font-weight: bolder;
+  font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+  margin-top: 0;
+  position: relative;
+  left: 5%;
+  
+}
+
+.nav-item {
+  position: relative; /* Important for submenu positioning */
+  padding: 0.5rem;
+  font-weight: bolder;
+  font-family:'Tajawal', sans-serif;
+}
+.nav-icon {
+  display: inline; /* Show the + icon by default */
+}
+
+.nav-icon-close {
+  display: none; /* Hide the - icon by default */
+}
+.nav-link {
+  color: #fff;
+  text-decoration: none;
+}
+.nav-item.active .nav-icon {
+  display: none; /* Hide the + icon when active */
+}
+
+.nav-item.active .nav-icon-close {
+  display: inline; /* Show the - icon when active */
+}
+
+/* Toggle Icons */
+.nav-icon,
+.nav-icon-close {
+  display: none; /* Hide both icons by default */
+}
+/* General Styles */
+.nav-content {
+  display: flex;
+  align-items: center;
+  flex-grow: 1;
+}
+
+.nav-text {
+  margin-right: 1rem; /* Space between text and search button */
+  font-size: 18px;
+  position: fixed;
+  right: 18%;
+  top: 0.7rem;
+}
+
+.search-button {
+  margin-right: 1rem; /* Space between search button and toggle button */
+  background: none;
+  border: none;
+  color: #fff;
+  font-size: 16px;
+  cursor: pointer;
+}
+.search-button {
+  background: none;
+  border: none;
+  color: #fff;
+  cursor: pointer;
+  font-size: 24px;
+  position: fixed;
+  right: 12%;
+  top: 2.5rem;
+}
+
+.search-icon {
+  display: inline;
+}
+/* Show the + icon by default */
+.nav-item .nav-icon {
+  display: inline; /* Show the + icon initially */
+}
+
+/* Show the _ icon when the nav item is active */
+.nav-item.active .nav-icon {
+  display: none; /* Hide the + icon when active */
+}
+
+.nav-item.active .nav-icon-close {
+  display: inline; /* Show the _ icon when active */
+}
+
+/* Submenu Styling */
+.nav-submenu {
+  list-style: none;
+  padding-left: 20px;
+  display: none; /* Hidden by default */
+  position: absolute; /* Positioning submenu outside the nav item */
+  top: 100%; /* Position it directly below the nav item */
+  left: 0;
+  background-color: #e4002b;
+  z-index: 100; /* Ensure it's above other elements */
+  width: 200px; /* Optional width */
+  
+  
+  padding: 10px;
+}
+
+.nav-submenu li a {
+  font-size: 18px;
+  padding: 5px 0;
+  color: #fff;
+  text-decoration: none;
+}
+
+.nav-item:hover .nav-submenu {
+  display: block; /* Show submenu on hover */
+}
+
+/* Ensure that the parent containers allow for submenu visibility */
+.nav, .container {
+  position: fixed;
+  width: 100%;
+  overflow: visible; /* Prevent clipping of the submenu */
+}
+.nav-list, .nav-submenu {
+  list-style-type: none; /* Removes the dots/bullets */
+  padding-left: 0; /* Ensures no default padding */
+  margin: 0; /* Removes default margin */
+}
+
+/* Desktop Styles */
+@media (min-width: 769px) {
+  .nav-list {
+    display: flex;
+    flex-direction: row;
+    position: fixed;
+    left: 12%;
+    top: 2rem;
+  }
+  .mobile-image {
+    display: none; /* Hide the mobile image on desktop screens */
+  }
+  .nav-item:hover .nav-submenu {
+    display: block;
+    position: absolute;
+    top: 100%; /* Below the nav item */
+    left: 0;
+    z-index: 100; /* Ensure it's above other content */
+  }
+
+  .nav-toggle {
+    display: none;
+  }
+  .buy-tickets {
+    background-color: rgb(161, 65, 0);
+    color: #ffffff; /* Red text color */
+    padding: 1px  10px;
+    border-radius: 5px;
+    transition: background-color 0.3s, color 0.3s; /* Smooth transition */
+  }
+
+  .buy-tickets:hover {
+    background-color: rgb(0, 0, 0);
+    color: white; /* Change text color to white on hover */
+  }
+}
+
+/* Mobile Styles */
+@media (max-width: 768px) {
+  .nav {
+    flex-direction: column;
+    align-items: flex-start;
+    width: 100%;
+    height: 2rem; /* Adjust nav height */
+    position: fixed; /* Ensure nav is always at the top */
+    z-index: 1001; /* Higher than the image */
+  }
+
+  .hide-on-mobile {
+    display: none; /* Hide these elements on mobile */
+  }
+
+  .nav-list {
+    display: flex;
+    flex-direction: column;
+    position: absolute;
+    top: 60px; /* Adjust based on the height of the nav */
+    left: 0;
+    background-color: #e4002b;
+    padding: 10px;
+    max-height: 0; /* Hidden by default */
+    overflow: hidden;
+    transition: max-height 0.3s ease-out;
+    visibility: hidden; /* Hidden by default */
+  }
+
+  .nav-list.active {
+    max-height: 1000px; /* Adjust based on content size */
+    visibility: visible; /* Show content when active */
+    width: 100%;
+  }
+
+  .nav-item.active .nav-submenu {
+    display: block; /* Show submenu when parent is active */
+  }
+
+  .search-button {
+    position: fixed;
+    top: 1rem;
+  }
+
+  .nav-submenu {
+    display: none; /* Hidden by default */
+    position: relative; /* Positioned below the parent item */
+    background-color: #e4002b;
+    padding: 10px;
+    z-index: 1001; /* Ensure it appears in front of the image */
+  }
+
+  .mobile-image {
+    display: block; /* Show the image on mobile screens */
+    width: 100%; /* Ensure the image takes full width */
+    height: 100%; /* Adjust height proportionally */
+    object-fit: cover; /* Ensure the image covers the container */
+    position: absolute; /* Position image absolutely */
+    top: 0;
+    left: 0;
+    z-index: 1; /* Set lower than nav */
+  }
+
+  .nav-toggle {
+    display: block;
+    background: none;
+    border: none;
+    color: #fff;
+    font-size: 24px;
+    cursor: pointer;
+    margin-left: auto;
+    margin-bottom: 10px;
+    z-index: 110; /* Ensure it's above other content */
+  }
+
+  .nav-toggle-icon,
+  .nav-toggle-icon-close {
+    display: block;
+    top: 0.9rem;
+    right: 10%;
+    position: fixed;
+  }
+
+  /* Position the plus (+) icon to the right for mobile */
+  .nav-icon {
+    display: inline-block;
+    float: right; /* Moves the + icon to the right */
+    position: relative;
+    margin-left: auto;
+    margin-right: 1rem;
+    right: 2.9rem;
+
+  }
+
+  /* Position the minus (-) icon to the right for mobile when active */
+  .nav-icon-close {
+    display: none;
+    float: right; /* Moves the - icon to the right */
+    margin-left: auto;
+    margin-right: 1rem;
+  }
+
+  /* Show the - icon and hide the + icon when the item is active */
+  .nav-item.active .nav-icon {
+    display: none; /* Hide the + icon when active */
+  }
+
+  .nav-item.active .nav-icon-close {
+    display: inline-block; /* Show the - icon when active */
+    position: fixed;
+    right: 1.5rem;
+  }
+
+  /* Ensure the submenu toggles open/close */
+  .nav-item.active .nav-submenu {
+    display: block; /* Show submenu */
+  }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* Footer Styles */
+.footer {
+  width: 100%;
+  background-color: #f8f8f8; /* Background color for the footer */
+  font-family: 'Tajawal', sans-serif; /* Set Tajawal font for the footer */
+}
+
+/* Footer Sections */
+.footer-sections {
+  display: flex;
+  gap: 0; /* No space between sections */
+  padding: 0; /* Remove padding from container */
+  margin: 0; /* Remove margin from container */
+}
+
+/* Individual Footer Section */
+.footer-section {
+  flex: 1; /* Each section takes up equal space */
+  min-width: 200px; /* Minimum width for each section */
+  background-color: #f9f9f9; /* Optional background color */
+  border-radius: 5px; /* Optional: Rounded corners */
+  box-sizing: border-box; /* Include padding in width calculation */
+  padding: 20px; /* Add padding inside sections */
+  margin: 0; /* Remove margin around sections */
+  text-align: left; /* Align text to the left */
+}
+
+/* Footer Bottom */
+.footer-bottom {
+  text-align: center; /* Center text in the bottom div */
+  background-color: #f9f9f9; /* Background color for footer-bottom */
+  padding: 20px; /* Add padding inside the footer bottom */
+  border-radius: 5px; /* Rounded corners */
+}
+
+.footer-bottom p {
+  margin: 10px 0; /* Add vertical spacing between paragraphs */
+  display: flex;
+  flex-direction: column;
+
+}
+
+.footer-bottom .search-container {
+  display: flex; /* Align input and button horizontally */
+  gap: 10px; /* Space between input and button */
+  margin-top: 10px; /* Space above the search container */
+}
+
+.footer-bottom input[type="text"] {
+  padding: 10px; /* Add padding inside the input */
+  border-radius: 5px; /* Rounded corners */
+  border: 1px solid #fff8f8; /* Light border color */
+  color: #333; /* Text color */
+}
+
+.footer-bottom input[type="text"]::placeholder {
+  color: #aaa; /* Gray placeholder text */
+}
+
+.footer-bottom button {
+  padding: 10px 15px; /* Add padding inside the button */
+  border-radius: 5px; /* Rounded corners */
+  border: 1px solid #000; /* Black border */
+  background-color: #fff; /* White background */
+  width: 9rem;
+  height: 3rem;
+  color: #000; /* Black text */
+  cursor: pointer; /* Change cursor on hover */
+  transition: background-color 0.3s ease, color 0.3s ease; /* Smooth transition */
+}
+
+.footer-bottom button:hover {
+  background-color: #000; /* Black background on hover */
+  color: #fff; /* White text on hover */
+}
+
+/* Footer Links */
+.footer-links {
+  margin: 0; /* Remove margin for the link container */
+  display: flex; /* Use flexbox to handle layout */
+  flex-wrap: wrap; /* Allow wrapping to handle multiple lines */
+  justify-content: center; /* Center the links */
+}
+
+.footer-links a {
+  text-decoration: none; /* Remove underline from links */
+  color: #000; /* Set link color to black */
+  margin: 5px 10px; /* Add horizontal spacing between links */
+}
+
+.footer-links a:hover {
+  text-decoration: underline; /* Add underline on hover */
+}
+
+.footer-copyright {
+  margin: 0; /* Remove margin for copyright text */
+  font-weight: bold; /* Make the copyright text bold */
+}
+
+/* Responsive Styles */
+@media (max-width: 768px) {
+  .footer-sections {
+    flex-direction: column; /* Stack sections vertically on smaller screens */
+  }
+
+  .footer-section {
+    min-width: 100%; /* Make each section take full width */
+    margin-bottom: 20px; /* Add space between stacked sections */
+  }
+
+  .footer-section:last-child {
+    margin-bottom: 0; /* Remove margin from the last section */
+  }
+
+  .footer-bottom {
+    margin-top: 20px; /* Add space above the footer bottom on mobile screens */
+  }
+
+  .footer-links {
+    flex-direction: column; /* Stack links vertically on mobile screens */
+    align-items: start; /* Align the links to the start */
+  }
+
+  .footer-links a {
+    margin: 10px 0; /* Add vertical spacing between links */
+  }
+
+  .footer-bottom button:hover {
+    background-color: #000; /* Ensure hover effect on mobile */
+    color: #fff; /* Ensure hover text color on mobile */
+  }
+}
+
+.social-icons {
+  margin-top: 10px;
+}
+
+.social-icon {
+  margin-right: 15px; /* Space between the icons */
+  text-decoration: none;
+  color: black; /* Set the icon color to black */
+  font-size: 24px; /* Adjust icon size */
+  transition: color 0.3s ease;
+}
+
+.social-icon:hover {
+  color: #e4002b; /* Change color on hover to match the theme */
+}
