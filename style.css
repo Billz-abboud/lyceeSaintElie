@@ -271,7 +271,7 @@ html, body {
   .mobile-image {
     display: block; /* Show the image on mobile screens */
     width: 100%; /* Ensure the image takes full width */
-    height: auto; /* Adjust height proportionally */
+    height: 100%; /* Adjust height proportionally */
     object-fit: cover; /* Ensure the image covers the container */
     position: absolute; /* Position image absolutely */
     top: 0;
