@@ -205,8 +205,9 @@ html, body {
     align-items: flex-start;
     width: 100%;
     height: 2rem; /* Adjust nav height */
-     position: fixed; /* Ensure position is set for z-index to work */
+    position: relative; /* Ensure position is set for z-index to work */
     z-index: 1001; /* Higher than the image */
+    position: fixed;
   }
   .nav-list {
     display: flex;
@@ -483,13 +484,103 @@ html, body {
 
 
 
+
+/* Carousel Section with Two Images */
+.carousel-sectiontwoimages {
+  width: 100%;
+  overflow: hidden; /* Hide overflow for the carousel container */
+ 
+  background-color: #ffffff; /* Optional: background color */
+}
+
+.carousel-containertwoimages {
+  display: flex;
+  flex-wrap: nowrap; /* Prevent wrapping */
+  gap: 20px; /* Space between items */
+  scroll-behavior: smooth; /* Smooth scrolling */
+  overflow-x: auto; /* Enable horizontal scrolling */
+}
+
+.carousel-itemtwoimages {
+  flex: 0 0 auto; /* Prevent flex items from shrinking or growing */
+  width: 50%; /* Set width to 50% on desktop */
+  max-width: 500px; /* Optional: Max width for each item */
+  box-sizing: border-box; /* Include padding and border in width */
+  border-radius: 5px; /* Optional: Rounded corners */
+  background-color: #f9f9f9; /* Background color for carousel items */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Optional: Shadow for a lifted effect */
+}
+
+.carousel-imagetwoimages {
+  width: 100%; /* Full width of the carousel item */
+  border-radius: 5px 5px 0 0; /* Rounded corners on top */
+  object-fit: cover; /* Ensure image covers the container */
+}
+
+.carousel-texttwoimages {
+  padding: 15px;
+ 
+}
+
+.carousel-texttwoimages h4 {
+  margin: 0 0 10px; /* Margin around the heading */
+  font-family: 'Tajawal', sans-serif; /* Apply Tajawal font */
+  font-size: 1.25rem; /* Adjust font size */
+}
+
+.carousel-texttwoimages p {
+  margin: 5px 0;
+  font-family: 'Tajawal', sans-serif; /* Apply Tajawal font */
+}
+
+/* Desktop view */
+@media (min-width: 769px) {
+  .carousel-containertwoimages {
+    display: flex;
+    gap: 20px; /* Space between items */
+  }
+
+  .carousel-itemtwoimages {
+    width: 50%; /* Half width for each item on desktop */
+  }
+}
+
+/* Mobile view */
+@media (max-width: 768px) {
+  .carousel-containertwoimages {
+    display: flex;
+  
+    scroll-snap-type: x mandatory; /* Enable snap scrolling */
+  }
+
+  .carousel-itemtwoimages {
+    width: 90%; /* Full width on mobile */
+    scroll-snap-align: start; /* Snap to the start of each item */
+  }
+
+  .carousel-texttwoimages {
+   
+  }
+
+  .carousel-containertwoimages::-webkit-scrollbar {
+    display: none; /* Hide scrollbar on mobile */
+  }
+}
+
+
+
+
+
+
+
+
 /* Alternating Image and Text Section Styles */
 .alternating-section {
   width: 100%;
-
   display: flex;
   flex-direction: column;
   gap: 20px; /* Space between each alternating div */
+  font-family: 'Tajawal', sans-serif; /* Apply Tajawal font */
 }
 
 .alternating-box {
@@ -514,6 +605,20 @@ html, body {
   margin: 5px 0;
 }
 
+.text-content .link {
+  display: inline-block;
+  margin: 10px 0;
+  color: #121213; /* Link color */
+  text-decoration: underline; /* Underline by default */
+  font-weight: bold;
+  transition: color 0.3s ease; /* Smooth transition for color */
+}
+
+.text-content .link:hover {
+  color: #0056b3; /* Darker blue color on hover */
+  /* Underline is already applied by default, so no need to add it on hover */
+}
+
 /* Reverse layout for div 2 and 4 */
 .alternating-box.reverse {
   flex-direction: row-reverse; /* Flip image and text for reverse effect */
@@ -530,7 +635,6 @@ html, body {
   .alternating-box .image,
   .alternating-box .text-content {
     width: 100%;
-    text-align: center;
   }
 
   .text-content {
@@ -541,7 +645,6 @@ html, body {
     order: 1; /* Ensure image comes before the text */
   }
 }
-
 
 
 
@@ -608,7 +711,7 @@ html, body {
 /* Image inside carousel item */
 .carousel-item img {
   width: 100%; /* Take full width of the item */
-  height: 20rem; /* Adjust the height */
+  height: 25rem; /* Adjust the height */
   object-fit: cover;
   border-radius: 5px;
 }
