@@ -55,36 +55,35 @@ document.addEventListener('DOMContentLoaded', function () {
 
 
 
-const prevButton = document.querySelector('.carousel-prev');
-const nextButton = document.querySelector('.carousel-next');
-const carousel = document.querySelector('.carousel');
 
-prevButton.addEventListener('click', () => {
-  carousel.scrollBy({
-    left: -carousel.clientWidth,
-    behavior: 'smooth'
-  });
+
+  const carouselContainer = document.querySelector('.carousel-containertwoimages');
+
+let isDown = false;
+let startX;
+let scrollLeft;
+
+carouselContainer.addEventListener('mousedown', (e) => {
+  isDown = true;
+  carouselContainer.classList.add('active');
+  startX = e.pageX - carouselContainer.offsetLeft;
+  scrollLeft = carouselContainer.scrollLeft;
 });
 
-nextButton.addEventListener('click', () => {
-  carousel.scrollBy({
-    left: carousel.clientWidth,
-    behavior: 'smooth'
-  });
+carouselContainer.addEventListener('mouseleave', () => {
+  isDown = false;
+  carouselContainer.classList.remove('active');
 });
 
-// Scroll the carousel to the left
-document.getElementById("scrollLeft").onclick = function() {
-    document.querySelector(".carousel").scrollBy({
-      left: -300, // Adjust the scroll distance as needed
-      behavior: 'smooth'
-    });
-  };
-  
-  // Scroll the carousel to the right
-  document.getElementById("scrollRight").onclick = function() {
-    document.querySelector(".carousel").scrollBy({
-      left: 300, // Adjust the scroll distance as needed
-      behavior: 'smooth'
-    });
-  };
+carouselContainer.addEventListener('mouseup', () => {
+  isDown = false;
+  carouselContainer.classList.remove('active');
+});
+
+carouselContainer.addEventListener('mousemove', (e) => {
+  if (!isDown) return; // Stop the function from running
+  e.preventDefault();
+  const x = e.pageX - carouselContainer.offsetLeft;
+  const walk = (x - startX) * 2; // Scroll speed
+  carouselContainer.scrollLeft = scrollLeft - walk;
+});
