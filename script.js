@@ -2,58 +2,58 @@ document.addEventListener('DOMContentLoaded', function () {
   const navItems = document.querySelectorAll('.nav-item');
   const navToggle = document.querySelector('.nav-toggle');
   const navList = document.querySelector('.nav-list');
-  const navLinks = document.querySelectorAll('.nav-link');
 
-  // Handle nav item click to toggle active class and submenu
   navItems.forEach(item => {
     item.addEventListener('click', function (event) {
-      // Prevent default action if clicking a link
-      if (event.target.closest('.nav-link')) {
-        return;
-      }
+      // Prevent other actions from triggering
+      event.stopPropagation();
 
-      // Toggle 'active' class on the clicked item
-      item.classList.toggle('active');
-
-      // Remove 'active' class from other items
-      navItems.forEach(otherItem => {
-        if (otherItem !== item) {
-          otherItem.classList.remove('active');
+      // Remove 'active' class from other nav items to close other submenus
+      navItems.forEach(navItem => {
+        if (navItem !== item) {
+          navItem.classList.remove('active');
         }
       });
 
-      // Toggle submenu visibility
+      // Toggle 'active' class on the clicked nav item
+      item.classList.toggle('active');
+
+      // Toggle submenu visibility for the clicked item
       const submenu = item.querySelector('.nav-submenu');
       if (submenu) {
-        submenu.classList.toggle('show');
+        submenu.style.display = submenu.style.display === 'block' ? 'none' : 'block';
       }
     });
   });
 
-  // Handle mobile menu toggle button
+  // Handle navigation toggle button for mobile
   navToggle.addEventListener('click', function () {
+    // Toggle 'active' class on the navigation list to show/hide it
     navList.classList.toggle('active');
+
+    // Change the toggle icon between hamburger (three dashes) and close (X) icon
+    const navToggleIcon = document.querySelector('.nav-toggle-icon');
+    const navToggleIconClose = document.querySelector('.nav-toggle-icon-close');
+    if (navList.classList.contains('active')) {
+      navToggleIcon.style.display = 'block';
+      navToggleIconClose.style.display = 'block';
+    } else {
+      navToggleIcon.style.display = 'block';
+      navToggleIconClose.style.display = 'none';
+    }
   });
 
-  // Ensure clicking a link in the nav does not close the menu on mobile
-  navLinks.forEach(link => {
-    link.addEventListener('click', function (event) {
-      // Check if the menu is already open and prevent hiding it
-      if (window.innerWidth <= 768) {
-        event.stopPropagation(); // Prevent event from bubbling up to document
-      }
-    });
-  });
-
-  // Optional: Close the active menu when clicking outside of it
+  // Close the navigation when clicking outside of it
   document.addEventListener('click', function (event) {
     if (!navList.contains(event.target) && !navToggle.contains(event.target)) {
       navList.classList.remove('active');
+      const navToggleIcon = document.querySelector('.nav-toggle-icon');
+      const navToggleIconClose = document.querySelector('.nav-toggle-icon-close');
+      navToggleIcon.style.display = 'block';
+      navToggleIconClose.style.display = 'none';
     }
   });
 });
-
-
 
 
 
