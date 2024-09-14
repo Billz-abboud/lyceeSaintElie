@@ -101,7 +101,7 @@ html, body {
   font-size: 18px;
   position: fixed;
   right: 18%;
-  top: 1%;
+  top: 0.6rem;
 }
 
 .search-button {
