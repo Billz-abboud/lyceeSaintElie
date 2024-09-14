@@ -20,7 +20,7 @@ html, body {
 }
 /* General Styles */
 .nav {
-  display: flex;
+
   justify-content: space-between;
   align-items: center;
   padding: 1rem;
@@ -53,16 +53,30 @@ html, body {
   font-size:small;
   font-weight: bolder;
   font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+  margin-top: 0;
 }
 
 .nav-item {
   position: relative; /* Important for submenu positioning */
   padding: 1rem;
 }
+.nav-icon {
+  display: inline; /* Show the + icon by default */
+}
 
+.nav-icon-close {
+  display: none; /* Hide the - icon by default */
+}
 .nav-link {
   color: #fff;
   text-decoration: none;
+}
+.nav-item.active .nav-icon {
+  display: none; /* Hide the + icon when active */
+}
+
+.nav-item.active .nav-icon-close {
+  display: inline; /* Show the - icon when active */
 }
 
 /* Toggle Icons */
@@ -82,7 +96,7 @@ html, body {
   font-size: 18px;
   position: fixed;
   right: 30%;
-  top: 4%;
+  top: 0;
 }
 
 .search-button {
@@ -101,7 +115,7 @@ html, body {
   font-size: 24px;
   position: fixed;
   right: 15%;
-  top: 6%;
+  top: 1rem;
 }
 
 .search-icon {
@@ -166,6 +180,7 @@ html, body {
     flex-direction: row;
     position: fixed;
     left: 18%;
+    top: 1rem;
   }
   .mobile-image {
     display: none; /* Hide the mobile image on desktop screens */
@@ -187,55 +202,63 @@ html, body {
 @media (max-width: 768px) {
   .nav {
     flex-direction: column;
-    align-items: flex-start; 
+    align-items: flex-start;
     width: 100%;
+    height: 2rem; /* Adjust nav height */
+    position: relative; /* Ensure position is set for z-index to work */
+    z-index: 1001; /* Higher than the image */
   }
-
   .nav-list {
     display: flex;
     flex-direction: column;
-    position: absolute; /* Overlay position */
+    position: absolute;
     top: 60px; /* Adjust based on the height of the nav */
     left: 0;
     background-color: #e4002b;
     padding: 10px;
-    z-index: 100; /* Ensure it is above other content */
-    max-height: 0; /* Start with height 0 for animation */
-    overflow: hidden; /* Hide overflow */
-    transition: max-height 0.3s ease-out; /* Smooth animation */
-    visibility: hidden; /* Hide content initially */
-  }
-  .nav-content {
-    width: 100%; /* Ensure it takes full width on mobile */
-    justify-content: space-between; /* Space between text, search button, and toggle */
+    max-height: 0; /* Hidden by default */
+    overflow: hidden;
+    transition: max-height 0.3s ease-out;
+    visibility: hidden; /* Hidden by default */
   }
   .nav-list.active {
     max-height: 1000px; /* Adjust based on content size */
     visibility: visible; /* Show content when active */
-  }
-  .nav-list.active {
-    max-height: 1000px; /* Adjust based on content size */
-    visibility: visible; /* Show content when active */
-  }
-  
-  .nav-toggle.active .nav-toggle-icon {
-    display: none; /* Hide the menu icon when active */
-  }
-
-  .nav-toggle.active .nav-toggle-icon-close {
-    display: inline; /* Show the close icon when active */
-  }
-  .nav-submenu {
-    display: none; /* Hide submenu by default */
-    position: relative; /* Position below the parent item */
-    background-color: #e4002b;
-    padding: 10px;
   }
 
   .nav-item.active .nav-submenu {
-    display: block; /* Show submenu when the parent item is active */
+    display: block; /* Show submenu when parent is active */
   }
 
+  
+
+  .nav-submenu {
+    display: none; /* Hidden by default */
+    position: relative; /* Positioned below the parent item */
+    background-color: #e4002b;
+    padding: 10px;
+    z-index: 1001; /* Ensure it appears in front of the image */
+  }
+  
+
+  .mobile-image {
+    display: block; /* Show the image on mobile screens */
+    width: 100%; /* Ensure the image takes full width */
+    height: auto; /* Adjust height proportionally */
+    object-fit: cover; /* Ensure the image covers the container */
+    position: absolute; /* Position image absolutely */
+    top: 0;
+    left: 0;
+    z-index: 1; /* Set lower than nav */
+  }
+
+  .nav-item.active .nav-icon {
+    display: none; /* Hide the + icon when active */
+  }
+
+  .nav-item.active .nav-icon-close {
+    display: inline; /* Show the - icon when active */
+  }
   .nav-toggle {
     display: block;
     background: none;
@@ -243,57 +266,16 @@ html, body {
     color: #fff;
     font-size: 24px;
     cursor: pointer;
-    margin-left: auto; /* Push toggle button to the right */
+    margin-left: auto;
     margin-bottom: 10px;
     z-index: 110; /* Ensure it's above other content */
-  }
-  .nav-toggle-icon {
-    display: inline; /* Show menu icon on mobile */
-  }
-  .nav-toggle-icon-close {
-    display: none; /* Hide close icon by default on mobile */
-  }
-  
-  .nav-toggle.active .nav-toggle-icon {
-    display: none; /* Hide menu icon when nav is active */
-  }
-
-  .nav-toggle.active .nav-toggle-icon-close {
-    display: inline; /* Show close icon when nav is active */
   }
   .nav-toggle-icon,
   .nav-toggle-icon-close {
     display: block;
-    top: 6%;
+    top: 0.9rem;
     right: 10%;
-    position:fixed;
-  }
-
-  .nav-toggle-icon-close {
-    display: none; /* Hide the close icon by default */
-  }
-
-  .nav-toggle.active .nav-toggle-icon {
-    display: none; /* Hide the menu icon when active */
-  }
-
-  .nav-toggle.active .nav-toggle-icon-close {
-    display: block; /* Show the close icon when active */
-  }
-
-  .video {
-    display: none; /* Hide the video on mobile screens */
-  }
-  
-  .mobile-image {
-    display: block; /* Show the image on mobile screens */
-    width: 100%; /* Ensure the image takes full width */
-    height: auto; /* Adjust height proportionally */
-    object-fit: cover; /* Ensure the image covers the container */
-    position: absolute; /* Position image absolutely to cover video container */
-    top: 0;
-    left: 0;
-    z-index: 5; /* Ensure it is behind the overlay */
+    position: fixed;
   }
 }
 
