@@ -255,8 +255,8 @@ html, body {
 
   .search-button{
     position: fixed;
-    top:1rem;
-    right:13%;
+    top:1.3rem;
+    right:3.5rem;
   }
 
   .nav-submenu {
