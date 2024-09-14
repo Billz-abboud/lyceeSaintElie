@@ -54,11 +54,16 @@ html, body {
   font-weight: bolder;
   font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
   margin-top: 0;
+  position: relative;
+  left: 5%;
+  
 }
 
 .nav-item {
   position: relative; /* Important for submenu positioning */
-  padding: 1rem;
+  padding: 0.5rem;
+  font-weight: bolder;
+  font-family:'Tajawal', sans-serif;
 }
 .nav-icon {
   display: inline; /* Show the + icon by default */
@@ -95,7 +100,7 @@ html, body {
   margin-right: 1rem; /* Space between text and search button */
   font-size: 18px;
   position: fixed;
-  right: 30%;
+  right: 18%;
   top: 0;
 }
 
@@ -115,7 +120,7 @@ html, body {
   font-size: 24px;
   position: fixed;
   right: 15%;
-  top: 1rem;
+  top: 2.5rem;
 }
 
 .search-icon {
@@ -164,7 +169,8 @@ html, body {
 
 /* Ensure that the parent containers allow for submenu visibility */
 .nav, .container {
-  position: relative;
+  position: fixed;
+  width: 100%;
   overflow: visible; /* Prevent clipping of the submenu */
 }
 .nav-list, .nav-submenu {
@@ -179,8 +185,8 @@ html, body {
     display: flex;
     flex-direction: row;
     position: fixed;
-    left: 18%;
-    top: 1rem;
+    left: 12%;
+    top: 2rem;
   }
   .mobile-image {
     display: none; /* Hide the mobile image on desktop screens */
@@ -196,6 +202,18 @@ html, body {
   .nav-toggle {
     display: none;
   }
+  .buy-tickets {
+    background-color: rgb(161, 65, 0);
+    color: #ffffff; /* Red text color */
+    padding: 1px  10px;
+    border-radius: 5px;
+    transition: background-color 0.3s, color 0.3s; /* Smooth transition */
+  }
+
+  .buy-tickets:hover {
+    background-color: rgb(0, 0, 0);
+    color: white; /* Change text color to white on hover */
+  }
 }
 
 /* Mobile Styles */
@@ -209,6 +227,10 @@ html, body {
     z-index: 1001; /* Higher than the image */
     position: fixed;
   }
+  .hide-on-mobile {
+    display: none; /* Hide these elements on mobile */
+  }
+
   .nav-list {
     display: flex;
     flex-direction: column;
@@ -231,7 +253,10 @@ html, body {
     display: block; /* Show submenu when parent is active */
   }
 
-  
+  .search-button{
+    position: fixed;
+    top:1rem;
+  }
 
   .nav-submenu {
     display: none; /* Hidden by default */
@@ -316,11 +341,40 @@ html, body {
 
 .video-overlay h2 {
   margin: 0;
-  font-size: 2rem; /* Adjust font size as needed */
-  background-color: rgba(0, 0, 0, 0.5); /* Optional: semi-transparent background for better readability */
-  padding: 10px;
+  font-size: 2.7rem; /* Adjust font size as needed */
+  padding: 0px;
   border-radius: 5px;
 }
+.visit-button {
+background-color: transparent; /* Red coral color */
+color: white;
+padding: 12px 24px;
+font-size: 16px;
+border: 2px solid white;
+border-radius: 0.5rem; /* Rounded corners */
+cursor: pointer;
+box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1); /* Subtle shadow */
+transition: all 0.3s ease; /* Smooth transition for hover effects */
+font-family: 'Tajawal', sans-serif; /* Apply the Tajawal font */
+
+}
+
+/* Hover effect */
+.visit-button:hover {
+background-color: #fffafa; /* Darker shade of red on hover */
+transform: translateY(-5px); /* Slight raise effect */
+box-shadow: 0px 8px 20px rgba(51, 30, 30, 0.2); /* Increase shadow on hover */
+color: #000;
+}
+
+/* Focus state for accessibility */
+.visit-button:focus {
+outline: none; /* Remove default focus outline */
+box-shadow: 0px 0px 0px 4px rgba(255, 255, 255, 0.5); /* Add custom outline for focus */
+}
+
+
+
 
 
 
@@ -341,6 +395,8 @@ html, body {
   display: flex;
   justify-content: space-between; /* Distribute space between heading and link */
   align-items: center;
+  left: 8%;
+  position: relative;
 }
 
 .view-all-link {
@@ -492,7 +548,8 @@ html, body {
 .carousel-sectiontwoimages {
   width: 100%;
   overflow: hidden; /* Hide overflow for the carousel container */
- 
+ justify-content: center;
+ display: flex;
   background-color: #ffffff; /* Optional: background color */
 }
 
@@ -541,10 +598,21 @@ html, body {
   .carousel-containertwoimages {
     display: flex;
     gap: 20px; /* Space between items */
+    overflow-x: hidden; /* Hide the scrollbar, but keep scrolling enabled */
   }
 
   .carousel-itemtwoimages {
     width: 50%; /* Half width for each item on desktop */
+  }
+
+  /* Hide the scrollbar on desktop */
+  .carousel-containertwoimages::-webkit-scrollbar {
+    display: none; /* Hide scrollbar on webkit-based browsers */
+  }
+
+  .carousel-containertwoimages {
+    -ms-overflow-style: none; /* Hide scrollbar for Internet Explorer and Edge */
+    scrollbar-width: none; /* Hide scrollbar for Firefox */
   }
 }
 
@@ -579,11 +647,12 @@ html, body {
 
 /* Alternating Image and Text Section Styles */
 .alternating-section {
-  width: 100%;
+  width: 95%;
   display: flex;
   flex-direction: column;
   gap: 20px; /* Space between each alternating div */
   font-family: 'Tajawal', sans-serif; /* Apply Tajawal font */
+  margin: auto;
 }
 
 .alternating-box {
@@ -596,12 +665,12 @@ html, body {
 }
 
 .alternating-box .image {
-  width: 45%; /* Adjust image width */
+  width: 50%; /* Adjust image width */
   border-radius: 5px;
 }
 
 .text-content {
-  width: 45%; /* Adjust text width */
+  width: 50%; /* Adjust text width */
 }
 
 .text-content p {
@@ -771,9 +840,9 @@ html, body {
 /* Red Background Section */
 .red-background-section {
   display: flex;
-  flex-direction: column; /* Stack items vertically */
+  flex-direction: row; /* Stack items vertically */
   align-items: center; /* Center content horizontally */
-  background-color: red;
+  background-color: #e4002b;
   height: 20vh; /* 20% of the viewport height */
   padding: 0 20px; /* Optional padding */
   color: white; /* Text color */
@@ -783,22 +852,40 @@ html, body {
 /* Text Container */
 .text-container {
   margin-bottom: 10px; /* Space between text and input */
+  width: 50rem;
+  font-size: xx-large ;
 }
 
 /* Search Container */
 .search-container {
   width: 100%; /* Full width of the container */
-  display: flex;
+  display: fixed;
   justify-content: center; /* Center input horizontally */
+  position: relative; /
 }
 
-/* Search Input */
 .search-container input {
-  width: 80%; /* Adjust width as needed */
-  padding: 8px;
-  border: none;
+  width: 100%;
+  padding: 10px 40px 10px 10px; /* Add padding to the right for the icon */
+  font-size: 16px;
+  border: 1px solid #ccc;
   border-radius: 5px;
-  outline: none;
+  box-sizing: border-box; /* Ensure padding is included in the total width */
+}
+
+.search-container input::placeholder {
+  color: #999;
+}
+
+.search-container::after {
+  content: '⮞'; /* Unicode for right arrow */
+  position: absolute;
+  right: 15px;
+  top: 50%;
+  transform: translateY(-50%); /* Center the icon vertically */
+  font-size: 20px;
+  color: #999;
+  pointer-events: none; /* Allow clicks to pass through the icon */
 }
 
 /* Responsive Styles */
@@ -809,6 +896,37 @@ html, body {
 
   .search-container input {
     width: 100%; /* Make input take full width on mobile screens */
+  }
+  .red-background-section {
+    display: flex;
+    flex-direction: column; /* Stack items vertically */
+    align-items: center; /* Center content horizontally */
+    background-color: #e4002b;
+    height: 20vh; /* 20% of the viewport height */
+    padding: 0 20px; /* Optional padding */
+    color: white; /* Text color */
+    text-align: center; /* Center text inside container */
+  }
+  
+  /* Text Container */
+  .text-container {
+    margin-bottom: 10px; /* Space between text and input */
+  }
+  
+  /* Search Container */
+  .search-container {
+    width: 100%; /* Full width of the container */
+    display: flex;
+    justify-content: center; /* Center input horizontally */
+  }
+  
+  /* Search Input */
+  .search-container input {
+    width: 95%; /* Adjust width as needed */
+    padding: 8px;
+    border: none;
+    border-radius: 5px;
+    outline: none;
   }
 }
 
